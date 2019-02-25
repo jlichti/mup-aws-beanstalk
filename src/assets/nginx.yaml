@@ -43,7 +43,7 @@ files:
             }
             <% } %>
 
-            location ~* \.(eot|ttf|woff)$ {
+            location ~* \.(eot|ttf|woff|woff2)$ {
               root /var/app/current/programs/web.browser/app;
               access_log off;
               add_header Access-Control-Allow-Origin *;
