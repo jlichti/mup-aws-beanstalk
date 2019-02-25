@@ -7,11 +7,6 @@ files:
           proxy_buffer_size 128k;
           proxy_buffers 4 256k;
           proxy_busy_buffers_size 256k;
-          worker_rlimit_nofile 65536;
-          
-          events {
-            worker_connections 4096;
-          }
 
           upstream nodejs {
             server 127.0.0.1:8081;
@@ -84,10 +79,6 @@ files:
           }
 
 container_commands:
-  increase_limits:
-    command: echo -e "#commands\nroot soft nofile 65536\nroot hard nofile 65536\n* soft nofile 65536\n* hard nofile 65536" >> /etc/security/limits.conf
-  increase_nginx_limits:
-    command: echo -e "ulimit -n 65536\n" >> /etc/sysconfig/nginx
   create_healthd_folder:
     command: "mkdir -p /var/log/nginx/healthd/"
   removeconfig:
