@@ -81,6 +81,16 @@ files:
               return 301 https://$host$request_uri;
             }
             <% } %>
+            
+            location ~* /packages/.+\.(eot|ttf|woff)$ {
+              root /var/app/current/programs/web.browser;
+              access_log off;
+              add_header Access-Control-Allow-Origin *;
+              add_header Vary Origin;
+              add_header Pragma public;
+              add_header Cache-Control "public";
+              expires max;
+            }
 
             location ~* \.(eot|ttf|woff|woff2)$ {
               root /var/app/current/programs/web.browser/app;
